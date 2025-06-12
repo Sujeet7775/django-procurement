@@ -1,12 +1,12 @@
-# Ignore myenv file
-myenv
-.DS_Store
-*.log
-# .env
+# # Ignore myenv file
+# myenv
+# .DS_Store
+# *.log
+# # .env
 venv/
 __pycache__/
 
-# Ignore Django migration files
-*/migrations/
-*/migrations/*.py
-*/migrations/*.pyc
+# # Ignore Django migration files
+# */migrations/
+# */migrations/*.py
+# */migrations/*.pyc
