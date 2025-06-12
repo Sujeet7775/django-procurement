@@ -2,7 +2,7 @@
 myenv
 .DS_Store
 *.log
-.env
+# .env
 venv/
 __pycache__/
 

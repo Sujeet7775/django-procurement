@@ -11,9 +11,12 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import sys
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(os.path.abspath("C:/Users/Admin/Desktop/django procurement/venv/src/dbom-project"))
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +41,30 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'purchase_request',
+    'supplier',
+    'rest_framework',
+    'common_models',
+    'users',  # Ensure this is the correct app name for your user model
+    # 'django_extensions',  # Optional: for development tools
+    'material',
+    'category',
+    'subcategory',
+    'uom',
+    'gst',
+    'hsn',
+    # 'material',
+    'warehouse',
+    'user_types',
+    'branch',
+    # 'corsheaders',
+    # 'django_filters',
+    'item',
+    'organizations',
+    'departments',
+    'teams',
+    'package',
+    'district',
+    
 ]
 
 MIDDLEWARE = [
@@ -131,3 +158,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}
+
+AUTH_USER_MODEL = 'users.User'
