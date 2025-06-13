@@ -16,7 +16,7 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-sys.path.append(os.path.abspath("C:/Users/Admin/Desktop/django procurement/venv/src/dbom-project"))
+sys.path.append(str(BASE_DIR / 'src' / 'dbom-project'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -52,12 +52,9 @@ INSTALLED_APPS = [
     'uom',
     'gst',
     'hsn',
-    # 'material',
     'warehouse',
     'user_types',
     'branch',
-    # 'corsheaders',
-    # 'django_filters',
     'item',
     'organizations',
     'departments',

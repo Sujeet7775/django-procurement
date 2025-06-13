@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import SupplierTestView
+from .views import PurchaseRequestCreateView
 
 urlpatterns = [
-    path('test-suppliers/', SupplierTestView.as_view()),
+    path('purchase-request/', PurchaseRequestCreateView.as_view(), name='purchase-request-create'),
 ]

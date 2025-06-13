@@ -1,19 +1,17 @@
 import uuid
 from django.db import models
 from common_models.models import AuditMixin
-from supplier.models import Supplier  # ✅ Direct import
 # from core.models import BaseModel
 
 class PurchaseRequest(AuditMixin):
     pr_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    pr_req_no = models.CharField(max_length=100, unique=True,read_only=True)
+    pr_req_no = models.CharField(max_length=100, unique=True)
     rfo_no = models.CharField(max_length=100, null=True, blank=True)
     pr_date = models.DateTimeField()
     
     # Storing only the UUID of the supplier instead of using a ForeignKey
     supplier_id = models.UUIDField()  # ✅ Just store UUID
 
-    pr_documents = models.FilePathField(null=True, blank=True)
     initiated_by = models.CharField(max_length=100)
     remark = models.TextField(null=True, blank=True)
     
@@ -40,4 +38,14 @@ class PurchaseRequest(AuditMixin):
         verbose_name = "Purchase Request"
         verbose_name_plural = "Purchase Requests"
         ordering = ['-created_at']  # Order by creation date, descending
-        unique_together = (('pr_no', 'supplier_id'),)
+
+
+
+class PRDocument(models.Model):
+    document_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    purchase_request = models.ForeignKey(PurchaseRequest, related_name='documents', on_delete=models.CASCADE)
+    file = models.FileField(upload_to='pr_documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.file.name
